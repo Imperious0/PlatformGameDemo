@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
   _movementSpeed: 0.7
+  _backwardSpeed: 0.35
+  _rotationSpeed: 0.35
   _jumpPower: 350

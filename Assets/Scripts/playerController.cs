@@ -11,7 +11,7 @@ public class playerController : MonoBehaviour
     private Rigidbody pRigidbody;
 
     private Vector3 moveForce;
-    private Vector3 freezeForce;
+    private Vector3 rotateForce;
 
     bool isStop = true;
     bool isGrounded = true;
@@ -21,7 +21,7 @@ public class playerController : MonoBehaviour
         pAnimator = this.GetComponent<Animator>();
         pRigidbody = this.GetComponent<Rigidbody>();
         moveForce = Vector3.zero;
-        freezeForce = Vector3.one;
+        rotateForce = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -30,31 +30,40 @@ public class playerController : MonoBehaviour
 
         if (Input.GetAxis("Vertical") != 0 && isGrounded) 
         {
-            moveForce.z = Input.GetAxis("Vertical") * 10 * pSettings.MovementSpeed;
-            pAnimator.SetFloat("VelocityZ", moveForce.z);
+            if(Input.GetAxis("Vertical") < 0)
+                moveForce = transform.forward * Input.GetAxis("Vertical") * 10 * pSettings.BackwardSpeed;
+            else
+                moveForce = transform.forward * Input.GetAxis("Vertical") * 10 * pSettings.MovementSpeed;
+            float velocity = Input.GetAxis("Vertical") > 0 ? moveForce.magnitude : (moveForce.magnitude * -1);
+            pAnimator.SetFloat("VelocityZ", velocity);
             if(isStop)
                 isStop = false;
         }
         if (Input.GetAxis("Horizontal") != 0)
         {
-            moveForce.x = Input.GetAxis("Horizontal") * 10 * pSettings.MovementSpeed;
-            pAnimator.SetFloat("VelocityX", moveForce.x);
-            if (isStop)
-                isStop = false;
+            rotateForce.x = Input.GetAxis("Horizontal") * 10 * pSettings.RotationSpeed;
+            float velocity = Input.GetAxis("Horizontal") > 0 ? rotateForce.magnitude : (rotateForce.magnitude * -1);
+
+            //Backward Movement Rotating
+            rotateForce *= Input.GetAxis("Vertical") < 0 ? -1 : 1;
+            velocity = Input.GetAxis("Vertical") < 0 ? velocity * -1 : velocity;
+
+            pAnimator.SetFloat("VelocityX", velocity);
         }
         if(Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && !isStop)
         {
             moveForce = Vector3.zero;
+            rotateForce = Vector3.zero;
             pAnimator.SetFloat("VelocityZ", moveForce.z);
             pAnimator.SetFloat("VelocityX", moveForce.x);
             isStop = true;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) 
+        if (Input.GetAxis("Jump") > 0 && isGrounded) 
         {
             pAnimator.SetFloat("VelocityZ", moveForce.z);
             pAnimator.SetFloat("VelocityX", moveForce.x);
             pAnimator.SetTrigger("Jump");
-            pRigidbody.AddForce(Vector3.up * pSettings.JumpPower, ForceMode.Force);
+            pRigidbody.AddForce(transform.up * pSettings.JumpPower, ForceMode.Force);
             isGrounded = false;
         }
     }
@@ -65,6 +74,11 @@ public class playerController : MonoBehaviour
             moveForce.y = pRigidbody.velocity.y;
 
             pRigidbody.velocity = moveForce;
+       
+        }
+        if(rotateForce.sqrMagnitude > 0) 
+        {
+            transform.Rotate((transform.up * rotateForce.x));
         }
         
     }
