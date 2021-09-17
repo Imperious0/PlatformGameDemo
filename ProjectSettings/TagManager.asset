@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Platform
+  - Obstacles
+  - MechanicPlatforms
+  - JumpablePlatform
   layers:
   - Default
   - TransparentFX

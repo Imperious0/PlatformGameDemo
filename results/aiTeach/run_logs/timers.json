@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1631837701",
+        "python_version": "3.9.7 (tags/v3.9.7:1016ef3, Aug 30 2021, 20:19:38) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "D:\\Github\\Unity\\PlatformGameDemo\\venv\\Scripts\\mlagents-learn config/AIChar.yaml --run-id=aiTeach --force",
+        "mlagents_version": "0.27.0",
+        "mlagents_envs_version": "0.27.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.9.0+cu102",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1631837764"
+    },
+    "total": 62.486060300000005,
+    "count": 1,
+    "self": 0.008035600000006582,
+    "children": {
+        "run_training.setup": {
+            "total": 0.2945361000000002,
+            "count": 1,
+            "self": 0.2945361000000002
+        },
+        "TrainerController.start_learning": {
+            "total": 62.1834886,
+            "count": 1,
+            "self": 0.0001508999999941807,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 62.1833078,
+                    "count": 1,
+                    "self": 62.1833078
+                },
+                "TrainerController._save_models": {
+                    "total": 2.9900000001248372e-05,
+                    "count": 1,
+                    "self": 2.9900000001248372e-05
+                }
+            }
+        }
+    }
+}

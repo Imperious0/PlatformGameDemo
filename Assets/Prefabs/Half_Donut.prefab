@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2806908307406823996}
   - component: {fileID: 4556537307090117719}
   - component: {fileID: 8645609645290747886}
+  - component: {fileID: 8075078155964338812}
   m_Layer: 0
   m_Name: Half_Donut_Stick
   m_TagString: Untagged
@@ -79,6 +80,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &8075078155964338812
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094411609590452435}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7388368752596093529, guid: 78ce1d2f94c16434da861e7221f4e31b, type: 3}
 --- !u!1 &2107657911091524621
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +105,7 @@ GameObject:
   - component: {fileID: 2628049674307783210}
   - component: {fileID: 5452009495409354378}
   - component: {fileID: 7199439656230063952}
+  - component: {fileID: 6769490551889175172}
   m_Layer: 0
   m_Name: Half_Donut_01
   m_TagString: Untagged
@@ -158,6 +174,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6769490551889175172
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107657911091524621}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5805732586665943179, guid: 78ce1d2f94c16434da861e7221f4e31b, type: 3}
 --- !u!1 &2329681798772063879
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +232,7 @@ GameObject:
   - component: {fileID: 8980456300805918005}
   - component: {fileID: 9092665533133397014}
   - component: {fileID: 2257659547181535077}
+  - component: {fileID: 7061187409983059734}
   m_Layer: 0
   m_Name: Half_Donut_Side
   m_TagString: Untagged
@@ -270,6 +301,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7061187409983059734
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5527970548531088429}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6835447887617772218, guid: 78ce1d2f94c16434da861e7221f4e31b, type: 3}
 --- !u!1 &5904425931537754951
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +326,7 @@ GameObject:
   - component: {fileID: 8979829518775881780}
   - component: {fileID: 7989610117606295907}
   - component: {fileID: 621983246191235180}
+  - component: {fileID: 2816216370339642742}
   m_Layer: 0
   m_Name: Half_Donut_Sphere
   m_TagString: Untagged
@@ -349,6 +395,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &2816216370339642742
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5904425931537754951}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7611640373606427401, guid: 78ce1d2f94c16434da861e7221f4e31b, type: 3}
 --- !u!1 &8008125978203435313
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +420,7 @@ GameObject:
   - component: {fileID: 7235389633391291275}
   m_Layer: 0
   m_Name: Half_Donut
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

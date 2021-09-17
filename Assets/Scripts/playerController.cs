@@ -6,6 +6,8 @@ public class playerController : MonoBehaviour
 {
     [SerializeField]
     private playerSettings pSettings;
+    [SerializeField]
+    private Transform respawnPoint;
 
     private Animator pAnimator;
     private Rigidbody pRigidbody;
@@ -49,6 +51,8 @@ public class playerController : MonoBehaviour
             velocity = Input.GetAxis("Vertical") < 0 ? velocity * -1 : velocity;
 
             pAnimator.SetFloat("VelocityX", velocity);
+            if (isStop)
+                isStop = false;
         }
         if(Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && !isStop)
         {
@@ -85,9 +89,36 @@ public class playerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Platform" && !isGrounded)
+        if (collision.gameObject.CompareTag("Platform") && !isGrounded)
         {
             isGrounded = true;
+            
         }
+        if(collision.gameObject.CompareTag("MechanicPlatforms") && !isGrounded) 
+        {
+            isGrounded = true;
+            this.transform.parent = collision.transform;
+        }
+        if(collision.gameObject.name == ("Terrain")) 
+        {
+            this.transform.position = new Vector3(UnityEngine.Random.Range(respawnPoint.position.x - 3, respawnPoint.position.x + 3), UnityEngine.Random.Range(respawnPoint.position.y - 3, respawnPoint.position.y + 3), UnityEngine.Random.Range(respawnPoint.position.z - 3, respawnPoint.position.z + 3));
+            this.transform.rotation = Quaternion.identity;
+        }
+        if (collision.gameObject.CompareTag("Obstacles")) 
+        {
+            // Calculate Angle Between the collision point and the player
+            Vector3 dir = collision.contacts[0].point - transform.position;
+            // We then get the opposite (-Vector3) and normalize it
+            dir = -dir.normalized;
+            // And finally we add force in the direction of dir and multiply it by force. 
+            // This will push back the player
+            Debug.LogError(dir * 50f);
+            GetComponent<Rigidbody>().AddForce(dir * 15f, ForceMode.Impulse);
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("MechanicPlatforms"))
+            this.transform.parent = null;
     }
 }

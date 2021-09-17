@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 2178487219207982688}
   - component: {fileID: 2996108713465594309}
   - component: {fileID: 1040514350084863247}
+  - component: {fileID: 9023942799123038932}
+  - component: {fileID: 7549297233558314878}
+  - component: {fileID: 1980543900552688372}
   m_Layer: 0
   m_Name: Rotator
-  m_TagString: Untagged
+  m_TagString: MechanicPlatforms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,3 +82,46 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &9023942799123038932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544833876976637146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96fecc713b6e350418da56585352f23a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rSettings: {fileID: 11400000, guid: d2ec23d3bd63de440a694f78c1e3deea, type: 2}
+--- !u!64 &7549297233558314878
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544833876976637146}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7554973115994324875, guid: 3fdba27de7c97a04f91cad6c75184e10, type: 3}
+--- !u!54 &1980543900552688372
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544833876976637146}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
