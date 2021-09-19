@@ -19,4 +19,8 @@ public class rotatorController : MonoBehaviour
     {
         this.transform.Rotate(isSpinClockwise * rSettings.SpinMultiplier);
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        
+    }
 }

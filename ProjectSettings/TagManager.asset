@@ -8,6 +8,10 @@ TagManager:
   - Obstacles
   - MechanicPlatforms
   - JumpablePlatform
+  - Terrain
+  - Enemy
+  - Destination
+  - kObstacles
   layers:
   - Default
   - TransparentFX
@@ -17,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - JumpObjects
   - 
   - 
   - 
