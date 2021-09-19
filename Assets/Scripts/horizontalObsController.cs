@@ -28,4 +28,11 @@ public class horizontalObsController : MonoBehaviour
     {
         
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<playerController>()) 
+        {
+            collision.gameObject.GetComponent<playerController>().hitSfx();
+        }
+    }
 }

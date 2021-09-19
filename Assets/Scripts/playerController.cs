@@ -15,6 +15,9 @@ public class playerController : MonoBehaviour
     private Animator pAnimator;
     private Rigidbody pRigidbody;
 
+    [SerializeField]
+    private List<AudioClip> myClips; 
+
     private Vector3 moveForce;
     private Vector3 rotateForce;
 
@@ -106,6 +109,8 @@ public class playerController : MonoBehaviour
         if (other.gameObject.CompareTag("Finish")) 
         {
             this.isStop = true;
+            if (!isEnemy)
+                GetComponent<AudioSource>().PlayOneShot(myClips[2]);
         }
     }
 
@@ -132,6 +137,7 @@ public class playerController : MonoBehaviour
             // And finally we add force in the direction of dir and multiply it by force. 
             // This will push back the player
             GetComponent<Rigidbody>().AddForce(dir * 15f, ForceMode.Impulse);
+            hitSfx();
         }
     }
     public void restartPlayer()
@@ -152,5 +158,13 @@ public class playerController : MonoBehaviour
 
         isStop = false;
         isGrounded = true;
+    }
+    public void footStep() 
+    {
+        GetComponent<AudioSource>().PlayOneShot(myClips[0]);
+    }
+    public void hitSfx() 
+    {
+        GetComponent<AudioSource>().PlayOneShot(myClips[1]);
     }
 }
