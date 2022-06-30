@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class WindmillScript : MonoBehaviour
+public class WindmillController : MonoBehaviour
 {
     [SerializeField][Range(0,10)]
     private float windmillSpeed;

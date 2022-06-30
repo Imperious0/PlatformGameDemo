@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class rotatingObstacleController : MonoBehaviour
+public class RotatingObstacleController : MonoBehaviour
 {
     [SerializeField]
     private rotatorSettings rSettings;

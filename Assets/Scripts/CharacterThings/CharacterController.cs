@@ -44,7 +44,8 @@ public class CharacterController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Finish"))
         {
-            this.isFinished = true;   
+            this.isFinished = true;
+            MusicManager.Instance.SfxHandler.playClipSelf("Finish");
         }
     }
 
@@ -81,7 +82,7 @@ public class CharacterController : MonoBehaviour
             // And finally we add force in the direction of dir and multiply it by force. 
             // This will push back the player
             cRigidbody.AddForce(dir * 25f, ForceMode.Impulse);
-            hitSfx();
+            MusicManager.Instance.SfxHandler.playClipSelf("Hit");
             StartCoroutine(awaitHit());
         }
     }
