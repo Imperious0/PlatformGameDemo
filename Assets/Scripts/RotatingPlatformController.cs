@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RotatingPlatformController : MonoBehaviour
 {
@@ -8,14 +6,8 @@ public class RotatingPlatformController : MonoBehaviour
     private bool clockwiseTurn = true;
     [SerializeField]
     private float spinPower = 0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (clockwiseTurn)
             this.transform.Rotate(this.transform.forward * spinPower);
@@ -26,7 +18,7 @@ public class RotatingPlatformController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Rigidbody>()) 
         {
-            collision.gameObject.GetComponent<Rigidbody>().AddForce((clockwiseTurn ? Vector3.left : Vector3.right) * spinPower * 50f, ForceMode.Force);
+            collision.gameObject.GetComponent<Rigidbody>().AddForce((clockwiseTurn ? Vector3.left : Vector3.right) * spinPower * 100f, ForceMode.Acceleration);
         }
     }
 }

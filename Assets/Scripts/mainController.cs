@@ -1,44 +1,52 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 public class mainController : MonoBehaviour
 {
     [SerializeField]
     private List<Transform> destinations;
-    private List<GameObject> distances;
+    [SerializeField]
+    private Transform pDestination;
+
+    private List<CharacterController> runners;
     [SerializeField]
     private TextMeshProUGUI timerText;
-    [SerializeField]
-    private List<TextMeshProUGUI> listText;
 
-    [SerializeField]
-    private GameObject finishUI;
-    [SerializeField]
-    private TextMeshProUGUI winnerAnnouncement;
+    public EventHandler<EventArgs> TimeUpEvent;
+
+    private static mainController instance;
+
+    public static mainController Instance { get => instance; }
+    public CharacterController[] Runners { get => runners.ToArray(); }
+
     // Start is called before the first frame update
     private float timer = 30f;
     private float countdown;
     private bool isGameEnd;
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            instance = this;
+            initializeRunners();
+            DontDestroyOnLoad(gameObject);
+
+            return;
+        }
+        else
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+    }
     void Start()
     {
-        finishUI.SetActive(false);
         isGameEnd = false;
-        distances = new List<GameObject>();
-        foreach (GameObject gg in GameObject.FindGameObjectsWithTag("Enemy"))
-            distances.Add(gg);
-        distances.Add(GameObject.FindGameObjectWithTag("Player"));
         restartGame();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void FixedUpdate()
     {
         if (isGameEnd)
@@ -51,30 +59,23 @@ public class mainController : MonoBehaviour
         else 
         {
             timerText.text = "Time: " + 0;
-            int count = 0;
-            winnerAnnouncement.text = "Winner List\n";
-            for(int i = 0; i < distances.Count; i++) 
+            TimeUpEvent?.Invoke(this, new EventArgs());
+            for(int i = 0; i < runners.Count; i++) 
             {
-                if (distances[i].GetComponent<playerController>().isStop && count < 3) 
-                {
-                    winnerAnnouncement.text += (count + 1) + ". " + distances[i].name + "\n";
-                    count++;
-                }
-                distances[i].GetComponent<playerController>().StopIT(true);
+                runners[i].GetComponent<CharacterController>().StopIT(true);
             }
-            finishUI.SetActive(true);
             isGameEnd = true;
             
             return;
         }
 
-        distances.Sort(delegate (GameObject a, GameObject b) {
-            return (a.GetComponent<playerController>().destinationDistance).CompareTo(b.GetComponent<playerController>().destinationDistance);
-        });
-        for (int i = 0; i < distances.Count; i++)
-        {
-            listText[i].text = (i + 1) + " - " + distances[i].name + " - " + distances[i].GetComponent<playerController>().destinationDistance + " Meters";
-        }
+    }
+    private void initializeRunners()
+    {
+        runners = new List<CharacterController>();
+        foreach (GameObject gg in GameObject.FindGameObjectsWithTag("Enemy"))
+            runners.Add(gg.GetComponent<CharacterController>());
+        runners.Add(GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterController>());
     }
     private void restartGame() 
     {
@@ -85,30 +86,28 @@ public class mainController : MonoBehaviour
             tmpdestinations.Add(ts.position);
         }
 
-        foreach (GameObject nma in GameObject.FindGameObjectsWithTag("Enemy"))
+        foreach (CharacterController nma in runners)
         {
-            int decision = UnityEngine.Random.Range(0, tmpdestinations.Count);
-            nma.GetComponent<NavMeshAgent>().SetDestination(tmpdestinations[decision]);
-            nma.GetComponent<playerController>().destinatoin = destinations[decision];
-            tmpdestinations.RemoveAt(decision);
-            nma.GetComponent<playerController>().restartPlayer();
-            nma.GetComponent<playerController>().StopIT(false);
-        }
-        GameObject.FindGameObjectWithTag("Player").GetComponent<playerController>().restartPlayer();
-        GameObject.FindGameObjectWithTag("Player").GetComponent<playerController>().StopIT(false);
-        foreach(TextMeshProUGUI tmpro in listText) 
-        {
-            tmpro.text = "Waiting ...";
+
+            if (nma.gameObject.CompareTag("Player"))
+            {
+                nma.DestinationPoint = pDestination.position;
+            }
+            else
+            {
+                int decision = UnityEngine.Random.Range(0, tmpdestinations.Count);
+                nma.DestinationPoint = tmpdestinations[decision];
+                tmpdestinations.RemoveAt(decision);
+            }
+            nma.restartPlayer();
+            nma.StopIT(false);
+
         }
         isGameEnd = false;
     }
     public void playAgain() 
     {
-        finishUI.SetActive(false);
         this.restartGame();
     }
-    public void exitGame() 
-    {
-        Application.Quit();
-    }
+
 }
