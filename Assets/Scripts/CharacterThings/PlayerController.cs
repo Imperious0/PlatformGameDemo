@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerController : CharacterController
 {
+    [SerializeField]
+    private MotionCapturer mCapture;
+
+    private Vector3 relativeVelocity;
+
     private Vector3 moveForce;
     protected override void FixedUpdate()
     {
@@ -22,30 +27,9 @@ public class PlayerController : CharacterController
         if (!isGrounded)
             return;
 
-        Vector3 movement = new Vector3(cRigidbody.velocity.x, cRigidbody.velocity.y, 10 * cSettings.MovementSpeed);
-        this.cRigidbody.velocity = movement;
-        cAnimator.SetFloat("VelocityZ", 10 * cSettings.MovementSpeed);
-        if (Input.GetAxis("Horizontal") < 0)
-        {
-            cRigidbody.AddForce(Vector3.left * 10 * cSettings.MovementSpeed);
-        }
-        else if (Input.GetAxis("Horizontal") == 0)
-        {
-            //NOP
-            cRigidbody.velocity = new Vector3(0f, cRigidbody.velocity.y, cRigidbody.velocity.z);
-        }
-        else
-        {
-            cRigidbody.AddForce(Vector3.right * 10 * cSettings.MovementSpeed);
-        }
-        if (Input.GetAxis("Jump") > 0 && isGrounded)
-        {
-            cAnimator.SetFloat("VelocityZ", moveForce.z);
-            cAnimator.SetFloat("VelocityX", moveForce.x);
-            cAnimator.SetTrigger("Jump");
-            cRigidbody.AddForce(transform.up * cSettings.JumpPower, ForceMode.Force);
-            isGrounded = false;
-        }
+        configureVelocity();
+
+
     }
     protected override void OnTriggerEnter(Collider other)
     {
@@ -55,6 +39,34 @@ public class PlayerController : CharacterController
         {
             //GetComponent<AudioSource>().PlayOneShot(myClips[2]);
         }
+    }
+    private void configureVelocity()
+    {
+        relativeVelocity = cRigidbody.velocity;
+
+        relativeVelocity.z = 10 * cSettings.MovementSpeed;
+        cAnimator.SetFloat("VelocityZ", relativeVelocity.z);
+
+        if (mCapture.getCurrentMotion().Equals(MotionType.MOVEMENT))
+        {
+            mCapture.signalMotion();
+            relativeVelocity.x = mCapture.getHorizontalMovementForce() * cSettings.MaxHorizontalSpeed;
+        }
+
+        if (mCapture.getCurrentMotion().Equals(MotionType.TAP) && isGrounded)
+        {
+            //msManager.playSfx(SfxType.PLAYER_JUMP);
+            mCapture.signalMotion();
+            float jumpPower = Mathf.Sqrt(2 * cSettings.MaxJumpDistance * -Physics.gravity.y);
+            isGrounded = false;
+            relativeVelocity.y += jumpPower;
+
+            cAnimator.SetFloat("VelocityZ", moveForce.z);
+            cAnimator.SetFloat("VelocityX", moveForce.x);
+            cAnimator.SetTrigger("Jump");
+
+        }
+        cRigidbody.velocity = relativeVelocity;
     }
     public override void restartPlayer()
     {

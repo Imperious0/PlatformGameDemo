@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSpeed: 0.8
   _backwardSpeed: 0.35
+  _maxHorizontalSpeed: 20
   _rotationSpeed: 0.35
-  _jumpPower: 350
+  _maxJumpDistance: 3

@@ -183,7 +183,7 @@ public class EnemyAI : Agent
         //Jumps
         if(isNeedJump && isGrounded && focusObjectDistance < jumpDistance && (focusObjectDistance != nonVisibleRange)) 
         {
-            aiBody.AddForce(transform.up * aiSettings.JumpPower, ForceMode.Force);
+            aiBody.AddForce(transform.up * aiSettings.MaxJumpDistance, ForceMode.Force);
             isGrounded = false;
             aiAnimator.SetTrigger("Jump");
         }

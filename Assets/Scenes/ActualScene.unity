@@ -913,7 +913,7 @@ PrefabInstance:
     - target: {fileID: 6535836583476595547, guid: db9875f6b22d56f4a9bfabc360b5000a,
         type: 3}
       propertyPath: spinPower
-      value: 1.3
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6535836583476595547, guid: db9875f6b22d56f4a9bfabc360b5000a,
         type: 3}
@@ -3649,7 +3649,7 @@ PrefabInstance:
     - target: {fileID: 6535836583476595547, guid: db9875f6b22d56f4a9bfabc360b5000a,
         type: 3}
       propertyPath: spinPower
-      value: 1.9
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6535836583476595547, guid: db9875f6b22d56f4a9bfabc360b5000a,
         type: 3}
@@ -3851,7 +3851,7 @@ PrefabInstance:
     - target: {fileID: 6535836583476595547, guid: db9875f6b22d56f4a9bfabc360b5000a,
         type: 3}
       propertyPath: spinPower
-      value: 1.9
+      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db9875f6b22d56f4a9bfabc360b5000a, type: 3}
@@ -4271,7 +4271,7 @@ PrefabInstance:
     - target: {fileID: 6535836583476595547, guid: db9875f6b22d56f4a9bfabc360b5000a,
         type: 3}
       propertyPath: spinPower
-      value: 1.3
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db9875f6b22d56f4a9bfabc360b5000a, type: 3}
@@ -5824,7 +5824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1350582077}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Obstacles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6152,6 +6152,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730801553520824881, guid: 128781c8d9f71544c8b671c952ca8d48,
+        type: 3}
+      propertyPath: spinPower
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 128781c8d9f71544c8b671c952ca8d48, type: 3}
@@ -7030,6 +7035,7 @@ GameObject:
   - component: {fileID: 1531826129}
   - component: {fileID: 1531826132}
   - component: {fileID: 1531826133}
+  - component: {fileID: 1531826134}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7143,6 +7149,22 @@ MonoBehaviour:
   - {fileID: 1702532849}
   pDestination: {fileID: 1544057216}
   timerText: {fileID: 1393830635}
+--- !u!114 &1531826134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531826128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0038e4b772cda240a902ccfbaf71b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mCapturerSettings:
+    _movementSensitivity: 500
+    _movementBrake: 10
+    _tapTimeBrake: 0.2
 --- !u!1 &1544057215
 GameObject:
   m_ObjectHideFlags: 0
@@ -7303,6 +7325,7 @@ MonoBehaviour:
   respawnPoint: {fileID: 1973981116}
   destinationPoint: {x: 0, y: 0, z: 0}
   destinationDistance: 0
+  mCapture: {fileID: 1531826134}
 --- !u!1 &1575225170
 GameObject:
   m_ObjectHideFlags: 0
@@ -10604,6 +10627,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730801553520824881, guid: 128781c8d9f71544c8b671c952ca8d48,
+        type: 3}
+      propertyPath: spinPower
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5730801553520824881, guid: 128781c8d9f71544c8b671c952ca8d48,
         type: 3}

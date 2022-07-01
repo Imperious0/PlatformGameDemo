@@ -192,7 +192,7 @@ public class opponentAI : Agent {
 
         if (isNeedJump && isGrounded && obstacleDistance < 3.25f && obstacleDistance > 0)
         {
-            aiRigidbody.AddForce(transform.up * aiSettings.JumpPower, ForceMode.Force);
+            aiRigidbody.AddForce(transform.up * aiSettings.MaxJumpDistance, ForceMode.Force);
             isGrounded = false;
         }
 
