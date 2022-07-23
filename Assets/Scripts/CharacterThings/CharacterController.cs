@@ -99,4 +99,10 @@ public class CharacterController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         isHit = false;
     }
+    public void footStep()
+    {
+        //If Necessary Footstep Sfx Can Handled Here
+        //Animation Event Handler used this.
+        //MusicManager.Instance.SfxHandler.playClipSelf("Run");
+    }
 }
