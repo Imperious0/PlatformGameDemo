@@ -23,7 +23,7 @@ public class UIController : MonoBehaviour
     }
     private void Start()
     {
-        runners = mainController.Instance.Runners;
+        runners = GameManager.Instance.Runners;
     }
     private void FixedUpdate()
     {
@@ -31,11 +31,11 @@ public class UIController : MonoBehaviour
     }
     private void OnEnable()
     {
-        mainController.Instance.TimeUpEvent += GameOverListener;
+        GameManager.Instance.TimeUpEvent += GameOverListener;
     }
     private void OnDisable()
     {
-        mainController.Instance.TimeUpEvent -= GameOverListener;
+        GameManager.Instance.TimeUpEvent -= GameOverListener;
     }
 
     private void GameOverListener(object sender, EventArgs e)

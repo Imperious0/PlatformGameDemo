@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class mainController : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private List<Transform> destinations;
@@ -16,9 +16,9 @@ public class mainController : MonoBehaviour
 
     public EventHandler<EventArgs> TimeUpEvent;
 
-    private static mainController instance;
+    private static GameManager instance;
 
-    public static mainController Instance { get => instance; }
+    public static GameManager Instance { get => instance; }
     public CharacterController[] Runners { get => runners.ToArray(); }
 
     // Start is called before the first frame update

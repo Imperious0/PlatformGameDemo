@@ -99,12 +99,4 @@ public class CharacterController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         isHit = false;
     }
-    public void footStep()
-    {
-        //GetComponent<AudioSource>().PlayOneShot(myClips[0]);
-    }
-    public void hitSfx()
-    {
-        //GetComponent<AudioSource>().PlayOneShot(myClips[1]);
-    }
 }

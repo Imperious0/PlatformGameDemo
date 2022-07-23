@@ -1,112 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &448563554663067532
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6052390212957484772}
-  - component: {fileID: 2578091182387223330}
-  m_Layer: 0
-  m_Name: girl_3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6052390212957484772
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448563554663067532}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5327288605943953208}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &2578091182387223330
-SkinnedMeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448563554663067532}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 3bec146154b48a547a8dbbf001c1848e, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 0
-  m_UpdateWhenOffscreen: 0
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 8486660057261700498, guid: 4de2cfbc496592f4b9ad410ea519fd4c, type: 3}
-  m_Bones:
-  - {fileID: 3018519860117389282}
-  - {fileID: 2097388374987143826}
-  - {fileID: 4219724583840801651}
-  - {fileID: 8558797656113702235}
-  - {fileID: 1157302738266881961}
-  - {fileID: 3555051730225400953}
-  - {fileID: 5370804688627505364}
-  - {fileID: 8702937510691901364}
-  - {fileID: 6827058002031303576}
-  - {fileID: 6456597944874289723}
-  - {fileID: 7948268655297692534}
-  - {fileID: 2665446774824792630}
-  - {fileID: 8103323053855217172}
-  - {fileID: 1192052574826585087}
-  - {fileID: 3673652592511215735}
-  - {fileID: 3886965950976551682}
-  - {fileID: 4967905221350880534}
-  - {fileID: 4815265407545290480}
-  - {fileID: 1994642183956757418}
-  - {fileID: 8277857920647209974}
-  - {fileID: 8900768924109336147}
-  - {fileID: 4408778446089057052}
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 3018519860117389282}
-  m_AABB:
-    m_Center: {x: -0.000008251984, y: 0.006740155, z: -0.0025625557}
-    m_Extent: {x: 0.011619847, y: 0.014773035, z: 0.008005848}
-  m_DirtyAABB: 0
 --- !u!1 &587307246003451987
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +284,7 @@ Transform:
   m_Children:
   - {fileID: 3018519860117389282}
   m_Father: {fileID: 5327288605943953208}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &2267043839825296964
 GameObject:
@@ -629,7 +522,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5327288605943953208}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &5087496841413175528
 NavMeshAgent:
@@ -814,7 +707,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5643263077729649665}
-  - {fileID: 6052390212957484772}
   - {fileID: 4565468335911193391}
   - {fileID: 1686474047593896473}
   m_Father: {fileID: 0}
@@ -866,7 +758,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.65
+  m_Radius: 0.6
   m_Height: 2.8
   m_Direction: 1
   m_Center: {x: 0, y: 1.35, z: 0}

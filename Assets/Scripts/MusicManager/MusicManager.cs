@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class MusicManager : MonoBehaviour
 {
     private static MusicManager instance;
