@@ -5,14 +5,17 @@ public class RotatingObstacleController : MonoBehaviour
     private rotatorSettings rSettings;
 
     private Vector3 isSpinClockwise;
+    
+    Transform obsTransform;
 
-    void Start()
+    private void Awake()
     {
-        isSpinClockwise = rSettings.SpinClockwise ? this.transform.up : this.transform.up * -1;
+        obsTransform = transform;
+        isSpinClockwise = rSettings.SpinClockwise ? obsTransform.up : obsTransform.up * -1;
     }
     // Update is called once per frame
     void FixedUpdate()
     {
-        this.transform.Rotate(isSpinClockwise * rSettings.SpinMultiplier);
+        obsTransform.Rotate(isSpinClockwise * rSettings.SpinMultiplier);
     }
 }

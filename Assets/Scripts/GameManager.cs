@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
     }
     public void playAgain() 
     {
-        this.restartGame();
+        restartGame();
     }
 
 }

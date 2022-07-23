@@ -92,13 +92,13 @@ public class EnemyAI : Agent
     public override void OnEpisodeBegin()
     {
         //Respawn Random
-        this.transform.localPosition = new Vector3(UnityEngine.Random.Range(respawnBase.x - 5f, respawnBase.x + 5f), UnityEngine.Random.Range(respawnBase.y+ 0.1f, respawnBase.y + 0.5f), UnityEngine.Random.Range(respawnBase.z - 1f, respawnBase.z + 1f));
-        this.transform.localRotation = Quaternion.identity;
+        transform.localPosition = new Vector3(UnityEngine.Random.Range(respawnBase.x - 5f, respawnBase.x + 5f), UnityEngine.Random.Range(respawnBase.y+ 0.1f, respawnBase.y + 0.5f), UnityEngine.Random.Range(respawnBase.z - 1f, respawnBase.z + 1f));
+        transform.localRotation = Quaternion.identity;
         destination.localPosition = new Vector3(UnityEngine.Random.Range(destinationBase.x - 3f, destinationBase.x + 3f), UnityEngine.Random.Range(destinationBase.y - 0.5f, destinationBase.y + 0.5f), UnityEngine.Random.Range(destinationBase.z - 1f, destinationBase.z + 1f));
         jumpableCollider.localPosition = new Vector3(UnityEngine.Random.Range(jumpableColliderBase.x - 0.5f, jumpableColliderBase.x + 0.5f), UnityEngine.Random.Range(jumpableColliderBase.y - 0.1f, jumpableColliderBase.y + 0.1f), UnityEngine.Random.Range(jumpableColliderBase.z - 0.1f, jumpableColliderBase.z + 0.1f));
         nextPlatform.localPosition = new Vector3(UnityEngine.Random.Range(nextPlatformBase.x - 1f, nextPlatformBase.x + 1f), UnityEngine.Random.Range(nextPlatformBase.y - 0.5f, nextPlatformBase.y + 0.5f), UnityEngine.Random.Range(nextPlatformBase.z - 0.5f, nextPlatformBase.z + 0.5f));
 
-        jumpableCollider.GetComponent<jumpablePlatformController>().deleteFromList(this.gameObject.name);
+        jumpableCollider.GetComponent<jumpablePlatformController>().deleteFromList(gameObject.name);
 
         //Observations
         focusObject = null;
@@ -139,7 +139,7 @@ public class EnemyAI : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(this.transform.localPosition);
+        sensor.AddObservation(transform.localPosition);
         sensor.AddObservation(destination.localPosition);
         sensor.AddObservation(aiBody.velocity.x);
         sensor.AddObservation(aiBody.velocity.z);
@@ -163,7 +163,7 @@ public class EnemyAI : Agent
         //Movement
         MoveZ = MoveZ > 0 ? (MoveZ * aiSettings.MovementSpeed) : (MoveZ * aiSettings.BackwardSpeed);
 
-        Vector3 movement = this.transform.forward * MoveZ * movementEmpower;
+        Vector3 movement = transform.forward * MoveZ * movementEmpower;
         movement.y = aiBody.velocity.y;
         aiBody.velocity = movement;
 
@@ -231,7 +231,7 @@ public class EnemyAI : Agent
 
     private void observeWorld() 
     {
-        Vector3 centerOfVision = this.transform.position + new Vector3(0f, 1f, 0f);
+        Vector3 centerOfVision = transform.position + new Vector3(0f, 1f, 0f);
 
         Transform focusedObstacle = null;
         float focusedDistance = nonVisibleRange;
@@ -244,22 +244,22 @@ public class EnemyAI : Agent
             sensorOffset *= (i + 1);
             int layerMask = ~(1 << LayerMask.NameToLayer("JumpingObjects"));
 
-            RaycastHit[] hits = Physics.RaycastAll(centerOfVision, this.transform.TransformDirection(Vector3.forward + Vector3.left + sensorOffset), eagleEye, layerMask);
+            RaycastHit[] hits = Physics.RaycastAll(centerOfVision, transform.TransformDirection(Vector3.forward + Vector3.left + sensorOffset), eagleEye, layerMask);
             if(hits.Length == 0) 
             {
-                Debug.DrawRay(centerOfVision, this.transform.TransformDirection(Vector3.forward + Vector3.left + sensorOffset) * eagleEye, Color.white);
+                Debug.DrawRay(centerOfVision, transform.TransformDirection(Vector3.forward + Vector3.left + sensorOffset) * eagleEye, Color.white);
                 continue;
             }
             for (int j = 0; j < hits.Length; j++)
             {
-                if (hits[j].collider.gameObject.CompareTag("JumpablePlatform") && !hits[j].collider.gameObject.GetComponent<jumpablePlatformController>().isContainsPlayer(this.gameObject.name)) 
+                if (hits[j].collider.gameObject.CompareTag("JumpablePlatform") && !hits[j].collider.gameObject.GetComponent<jumpablePlatformController>().isContainsPlayer(gameObject.name)) 
                 {
                     isContactAny = true;
                     onVisionElementRanges[i] = hits[j].distance;
                     if(hits[j].distance < focusedDistance) 
                     {
                         if(focusedDistance != nonVisibleRange)
-                            Debug.DrawRay(centerOfVision, this.transform.TransformDirection(Vector3.forward + Vector3.left + new Vector3(2f / visionSensorRange, 0f, 0f) * selectedSensor) * focusedDistance, Color.red);
+                            Debug.DrawRay(centerOfVision, transform.TransformDirection(Vector3.forward + Vector3.left + new Vector3(2f / visionSensorRange, 0f, 0f) * selectedSensor) * focusedDistance, Color.red);
 
                         focusedObstacle = hits[j].collider.transform.gameObject.transform;
                         focusedDistance = hits[j].distance;
@@ -268,12 +268,12 @@ public class EnemyAI : Agent
                     }
                     else 
                     {
-                        Debug.DrawRay(centerOfVision, this.transform.TransformDirection(Vector3.forward + Vector3.left + sensorOffset) * hits[j].distance, Color.red);
+                        Debug.DrawRay(centerOfVision, transform.TransformDirection(Vector3.forward + Vector3.left + sensorOffset) * hits[j].distance, Color.red);
                     }
                 }
                 else 
                 {
-                    Debug.DrawRay(centerOfVision, this.transform.TransformDirection(Vector3.forward + Vector3.left + sensorOffset) * hits[j].distance, Color.yellow);
+                    Debug.DrawRay(centerOfVision, transform.TransformDirection(Vector3.forward + Vector3.left + sensorOffset) * hits[j].distance, Color.yellow);
                 }
             }
         }
@@ -288,8 +288,8 @@ public class EnemyAI : Agent
         {
             focusObject = focusedObstacle;
             focusObjectDistance = focusedDistance;
-            focusObjectAngle = Vector3.SignedAngle(this.transform.TransformDirection(Vector3.forward), (focusObject.position - this.transform.position), transform.up);
-            Debug.DrawRay(centerOfVision, this.transform.TransformDirection(Vector3.forward + Vector3.left + ( new Vector3(2f / visionSensorRange, 0f, 0f) * (selectedSensor) ) ) * focusObjectDistance, Color.green);
+            focusObjectAngle = Vector3.SignedAngle(transform.TransformDirection(Vector3.forward), (focusObject.position - transform.position), transform.up);
+            Debug.DrawRay(centerOfVision, transform.TransformDirection(Vector3.forward + Vector3.left + ( new Vector3(2f / visionSensorRange, 0f, 0f) * (selectedSensor) ) ) * focusObjectDistance, Color.green);
             
         }
 

@@ -7,8 +7,17 @@ public class WindmillController : MonoBehaviour
     [SerializeField]
     private GameObject Propeller;
 
+    private Transform windmillTransform;
+    private Transform propTransform;
+
+    private void Awake()
+    {
+        windmillTransform = transform;
+        propTransform = Propeller.transform;
+    }
+
     private void FixedUpdate()
     {
-        Propeller.transform.Rotate(transform.forward * windmillSpeed);
+        propTransform.Rotate(windmillTransform.forward * windmillSpeed);
     }
 }

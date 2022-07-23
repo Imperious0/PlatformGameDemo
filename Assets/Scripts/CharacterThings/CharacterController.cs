@@ -14,6 +14,7 @@ public class CharacterController : MonoBehaviour
 
     protected Animator cAnimator;
     protected Rigidbody cRigidbody;
+    protected Transform cTransform;
 
     public float destinationDistance;
 
@@ -28,23 +29,23 @@ public class CharacterController : MonoBehaviour
     {
         cAnimator = GetComponent<Animator>();
         cRigidbody = GetComponent<Rigidbody>();
+        cTransform = transform;
     }
 
     protected virtual void FixedUpdate()
     {
-
-        destinationDistance = Mathf.FloorToInt(Vector3.Distance(destinationPoint, this.transform.position));
+        destinationDistance = Mathf.FloorToInt(Vector3.Distance(destinationPoint, cTransform.position));
     }
 
     public void StopIT(bool isGameEnd)
     {
-        this.isGameOver = isGameEnd;
+        isGameOver = isGameEnd;
     }
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Finish"))
         {
-            this.isFinished = true;
+            isFinished = true;
             MusicManager.Instance.SfxHandler.playClipSelf("Finish");
         }
     }
@@ -89,8 +90,8 @@ public class CharacterController : MonoBehaviour
     
     public virtual void restartPlayer()
     {
-        this.transform.position = new Vector3(UnityEngine.Random.Range(respawnPoint.position.x - 3, respawnPoint.position.x + 3), UnityEngine.Random.Range(respawnPoint.position.y - 3, respawnPoint.position.y + 3), UnityEngine.Random.Range(respawnPoint.position.z - 3, respawnPoint.position.z + 3));
-        this.transform.rotation = Quaternion.identity;
+        cTransform.position = new Vector3(Random.Range(respawnPoint.position.x - 3, respawnPoint.position.x + 3), Random.Range(respawnPoint.position.y - 3, respawnPoint.position.y + 3), Random.Range(respawnPoint.position.z - 3, respawnPoint.position.z + 3));
+        cTransform.rotation = Quaternion.identity;
         isFinished = false;
         isGrounded = true;
     }

@@ -24,7 +24,6 @@ public class EnemyController : CharacterController
             cAnimator.SetFloat("VelocityZ", 0f);
             return;
         }
-        destinationDistance = Mathf.FloorToInt(Vector3.Distance(destinationPoint, this.transform.position));
         if (!isGrounded)
             return;
 
@@ -36,7 +35,7 @@ public class EnemyController : CharacterController
     {
         nmAgent.enabled = false;
 
-        nmAgent.Warp(this.transform.position);
+        nmAgent.Warp(cTransform.position);
         nmAgent.enabled = true;
         nmAgent.isStopped = false;
         nmAgent.SetDestination(destinationPoint);

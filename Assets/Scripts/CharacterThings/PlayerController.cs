@@ -21,7 +21,6 @@ public class PlayerController : CharacterController
             cAnimator.SetFloat("VelocityZ", 0f);
             return;
         }
-        destinationDistance = Mathf.FloorToInt(Vector3.Distance(destinationPoint, this.transform.position));
         if (!isGrounded)
             return;
 
