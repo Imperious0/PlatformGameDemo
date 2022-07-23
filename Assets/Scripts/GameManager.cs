@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
             TimeUpEvent?.Invoke(this, new EventArgs());
             for(int i = 0; i < runners.Count; i++) 
             {
-                runners[i].GetComponent<CharacterController>().StopIT(true);
+                runners[i].StopIT(true);
             }
             isGameEnd = true;
             

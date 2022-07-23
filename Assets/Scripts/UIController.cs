@@ -84,7 +84,7 @@ public class UIController : MonoBehaviour
         runners = runners.OrderBy(x => x.destinationDistance).ToArray();
         for (int i = 0; i < Mathf.Min(runners.Length, rankListTexts.Count); i++)
         {
-            rankListTexts[i].text = (i + 1) + " - " + runners[i].name + " - " + runners[i].GetComponent<CharacterController>().destinationDistance + " Meters";
+            rankListTexts[i].text = (i + 1) + " - " + runners[i].name + " - " + runners[i].destinationDistance + " Meters";
         }
     }
 
