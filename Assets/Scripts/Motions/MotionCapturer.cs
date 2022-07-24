@@ -28,7 +28,7 @@ public class MotionCapturer : MonoBehaviour
     }
     private void checkMotions() 
     {
-#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_WIN
+#if UNITY_EDITOR || UNITY_EDITOR_64 || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || PLATFORM_STANDALONE_WIN
         if (Input.GetMouseButtonDown(0))
         {
             beginTouch = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -185,6 +185,10 @@ public class MotionCapturer : MonoBehaviour
         float sensitivity = Mathf.InverseLerp(0, mCapturerSettings.MovementSensitivity, diffTouch.magnitude);
         float movementRatio = Vector2.Dot(Vector2.up, movementDir);
         return movementRatio * sensitivity;
+    }
+    public Vector2 getCurrentTouch()
+    {
+        return currentTouch;
     }
     [System.Serializable]
     private class MotionCaptureSettings

@@ -9,12 +9,16 @@ public class GameManager : MonoBehaviour
     private List<Transform> destinations;
     [SerializeField]
     private Transform pDestination;
+    [SerializeField]
+    private Transform wallDestination;
 
     private List<CharacterController> runners;
     [SerializeField]
     private TextMeshProUGUI timerText;
 
-    public EventHandler<EventArgs> TimeUpEvent;
+    public event EventHandler<EventArgs> TimeUpEvent;
+    public event EventHandler<GamePhaseChangeEventArgs> PhaseChangeEvent;
+
 
     private static GameManager instance;
 
@@ -44,6 +48,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         isGameEnd = false;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().PlayerFinishRun += PlayerFinishRunningListener;
         restartGame();
     }
 
@@ -107,7 +112,33 @@ public class GameManager : MonoBehaviour
     }
     public void playAgain() 
     {
+        PhaseChangeEvent?.Invoke(this, new GamePhaseChangeEventArgs(GameObject.FindGameObjectWithTag("Player").transform, 1, new Vector3(0, 8, -10)));
         restartGame();
     }
+
+    public void PlayerFinishRunningListener(object sender, EventArgs e)
+    {
+        PhaseChangeEvent?.Invoke(this, new GamePhaseChangeEventArgs(wallDestination, 2, new Vector3(0, 2, -7)));
+    }
+
+}
+
+public class GamePhaseChangeEventArgs : EventArgs
+{
+    private Transform _currentTrack;
+    private int _gamePhaseIndex;
+    private Vector3 _currentTrackOffset = Vector3.zero;
+
+    public int CurrentGamePhase { get => _gamePhaseIndex; }
+    public Transform CurrentCameraTrack { get => _currentTrack; }
+    public Vector3 CurrentTrackOffset { get => _currentTrackOffset; }
+
+    public GamePhaseChangeEventArgs(Transform t, int GamePhase, Vector3 cameraOffset)
+    {
+        _currentTrack = t;
+        _gamePhaseIndex = GamePhase;
+        _currentTrackOffset = cameraOffset;
+    }
+
 
 }

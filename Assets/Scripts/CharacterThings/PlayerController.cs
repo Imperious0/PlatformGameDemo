@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : CharacterController
 {
     [SerializeField]
     private MotionCapturer mCapture;
+
+    public event EventHandler<EventArgs> PlayerFinishRun;
 
     private Vector3 relativeVelocity;
 
@@ -34,6 +37,7 @@ public class PlayerController : CharacterController
 
         if (other.gameObject.CompareTag("Finish"))
         {
+            PlayerFinishRun?.Invoke(this, new EventArgs());
             //GetComponent<AudioSource>().PlayOneShot(myClips[2]);
         }
     }

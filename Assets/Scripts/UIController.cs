@@ -91,6 +91,7 @@ public class UIController : MonoBehaviour
     public void playAgain()
     {
         GameOverUI.SetActive(false);
+        GameManager.Instance.playAgain();
     }
     public void exitGame()
     {
